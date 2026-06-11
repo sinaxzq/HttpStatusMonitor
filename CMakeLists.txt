@@ -17,7 +17,9 @@ FetchContent_MakeAvailable(cpr)
 
 add_executable(HttpStatusMonitor
     main.cpp
-HttpChecker.cpp)
+    HttpChecker.cpp 
+    ResultFormatter.cpp
+)
 
 target_link_libraries(HttpStatusMonitor PRIVATE cpr::cpr)
 
@@ -31,3 +33,22 @@ if(WIN32)
         COMMAND_EXPAND_LISTS
     )
 endif()
+
+enable_testing()
+
+add_executable(ResultFormatterTests 
+    tests/ResultFormatterTests.cpp 
+    ResultFormatter.cpp
+)
+
+target_include_directories(ResultFormatterTests PRIVATE
+    include
+)
+
+add_test(
+    NAME ResultFormatterTests 
+    COMMAND ResultFormatterTests
+)
+
+
+
