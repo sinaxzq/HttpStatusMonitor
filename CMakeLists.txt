@@ -17,9 +17,11 @@ FetchContent_MakeAvailable(cpr)
 
 add_executable(HttpStatusMonitor
     main.cpp
-)
+HttpChecker.cpp)
 
 target_link_libraries(HttpStatusMonitor PRIVATE cpr::cpr)
+
+target_include_directories(HttpStatusMonitor PRIVATE include)
 
 if(WIN32)
     add_custom_command(TARGET HttpStatusMonitor POST_BUILD
