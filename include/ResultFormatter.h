@@ -1,6 +1,6 @@
 #pragma once
 
-#include "HttpChecker.h"
+#include "HttpCheckResult.h"
 
 #include <string>
 
