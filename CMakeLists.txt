@@ -19,6 +19,7 @@ add_executable(HttpStatusMonitor
     main.cpp
     HttpChecker.cpp 
     ResultFormatter.cpp
+    StatusClassifier.cpp
 )
 
 target_link_libraries(HttpStatusMonitor PRIVATE cpr::cpr)
@@ -50,5 +51,18 @@ add_test(
     COMMAND ResultFormatterTests
 )
 
+add_executable(StatusClassifierTests 
+    tests/StatusClassifierTests.cpp 
+    StatusClassifier.cpp
+)
+
+target_include_directories(StatusClassifierTests PRIVATE
+    include
+)
+
+add_test(
+    NAME StatusClassifierTests 
+    COMMAND StatusClassifierTests
+)
 
 

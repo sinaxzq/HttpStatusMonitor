@@ -1,5 +1,6 @@
 #include "HttpChecker.h"
 #include "ResultFormatter.h"
+#include "StatusClassifier.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -24,13 +25,20 @@ int main(int argc , char* argv[])
         return 1;
     }
 
+    bool allHealthy = true;
+
     for (int i = 1; i < argc; ++i)
     {
         const std::string url = argv[i];
         const HttpCheckResult result = checkUrl(url);
 
         std::cout<< formatResult(result)<<"\n";
+
+        if (!isHealthy(result))
+        {
+            allHealthy = false;
+        }
     }
 
-    return 0;
+    return allHealthy ? 0 : 2;
 }
